@@ -6,13 +6,13 @@ app.get('/', (req, res) => {
   res.send('Hello Express!')
 })
 
-app.get('/movies/:genre/year/:year', (req, res) => {
-  console.log(req.params.genre)
-  console.log(req.params.year)
-  
-  res.send('Movies Route')
+app.get('/movies', (req, res) => {
+console.log(req.query.sort)
+console.log(req.query.page)
+
+  res.send('Movies')
 })
 
 app.listen(PORT, () => {
-  console.log("Server is running on PORT 3000")
+  console.log("Server is running on PORT " + PORT)
 });
