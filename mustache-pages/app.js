@@ -2,10 +2,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const mustacheExpress = require('mustache-express');
 
-app.engine('mustache', mustacheExpress())
-app.set('views', './views')
+const VIEWS_PATH = path.join(__dirname, '/views')
+
+//http://localhost/site.css
+app.use('/css', express.static("css"))
+
+app.engine('mustache', mustacheExpress(VIEWS_PATH + '/partials', '.mustache'))
+app.set('views', VIEWS_PATH)
 app.set('view engine', 'mustache')
 
 app.use(bodyParser.urlencoded({extended: false}))
