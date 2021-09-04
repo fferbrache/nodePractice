@@ -5,8 +5,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const userRoutes = require('./routes/users');
 const mustacheExpress = require('mustache-express');
+const session = require('express-session');
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}))
 
 const VIEWS_PATH = path.join(__dirname, '/views')
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use('/users', userRoutes)
 
